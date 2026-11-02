@@ -1,11 +1,13 @@
 # syntax=docker/dockerfile:1
 
+# ---- deps: prod-only node_modules, cached on lockfile ----
 FROM node:26-alpine AS deps
 WORKDIR /usr/app
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev --ignore-scripts && npm cache clean --force
+    npm ci --omit=dev --ignore-scripts
 
+# ---- runtime: no npm install step, non-root ----
 FROM node:26-alpine
 ENV NODE_ENV=production
 WORKDIR /usr/app
