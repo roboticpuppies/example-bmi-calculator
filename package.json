@@ -1,0 +1,25 @@
+{
+  "name": "syaifuddin-bmi-calculator",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "4.x",
+    "express-validator": "6.x",
+    "mathjs": "~10.5.0",
+    "morgan": "^1.10.0",
+    "newrelic": "^8.11.0"
+  },
+  "keywords": [
+    "bmi"
+  ],
+  "author": "Syaifuddin",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
