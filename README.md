@@ -49,11 +49,6 @@ Note: Only numbers are accepted as value. If the input is not number, it will th
 
 I'm using Papertrail to log the container.
 
-## Observability
-![Observ using New Relic](docs/2.png)
-
-
-I'm using New Relic as observability tool.
 
 ## To do
 

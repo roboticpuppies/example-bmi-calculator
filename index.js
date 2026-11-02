@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const port = 8080;
-require('newrelic')
 
 // use morgan for logging
 app.use(require('morgan')('dev'));
