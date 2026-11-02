@@ -24,7 +24,7 @@ function bmiCategoryLabel(bmiResult){
 
 // function to actually calculate bmi
 function calculateBMI(weight, height) {
-    bmi = (weight/height).toPrecision(3);
+    const bmi = (weight/height).toPrecision(3);
     return bmi
 }
 
@@ -38,8 +38,9 @@ app.get('/', (req, res) => {
 
 // Handle route to BMI API
 app.get('/bmi/calc', [
-    query('weight').isNumeric().withMessage('Value is not number'),
-    query('height').isNumeric().withMessage('Value is not number')
+    // isString rejects repeated params (?weight=1&weight=2); bounds reject 0, negatives, absurd values
+    query('weight').isString().bail().isFloat({ min: 1, max: 700 }).withMessage('Weight must be a number between 1 and 700 (kg)'),
+    query('height').isString().bail().isFloat({ min: 30, max: 300 }).withMessage('Height must be a number between 30 and 300 (cm)')
     ], (req, res) => {
 
     // return error if input not valid
@@ -48,11 +49,11 @@ app.get('/bmi/calc', [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    weight = parseInt(req.query.weight);
-    height = parseFloat((Math.pow((req.query.height/100), 2)).toPrecision(3));
+    const weight = parseInt(req.query.weight);
+    const height = parseFloat((Math.pow((req.query.height/100), 2)).toPrecision(3));
 
-    bmiResult = calculateBMI(weight, height);
-    bmiLabel = bmiCategoryLabel(bmiResult);
+    const bmiResult = calculateBMI(weight, height);
+    const bmiLabel = bmiCategoryLabel(bmiResult);
     res.status(200).json({
         bmi: bmiResult,
         weight: weight,
