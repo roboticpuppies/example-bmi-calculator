@@ -1,0 +1,15 @@
+services:
+  app:
+    image: node:26-alpine
+    working_dir: /usr/app
+    command: sh -c "npm ci && node --watch --import ./instrument.js index.js"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
