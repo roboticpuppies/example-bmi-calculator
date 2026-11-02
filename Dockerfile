@@ -12,7 +12,7 @@ FROM node:26-alpine
 ENV NODE_ENV=production
 WORKDIR /usr/app
 COPY --from=deps --chown=node:node /usr/app/node_modules ./node_modules
-COPY --chown=node:node package.json index.js ./
+COPY --chown=node:node package.json index.js instrument.js ./
 USER node
 EXPOSE 8080
-CMD ["node", "index.js"]
+CMD ["node", "--import", "./instrument.js", "index.js"]

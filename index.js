@@ -1,7 +1,7 @@
 // use express framework
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // use morgan for logging
 app.use(require('morgan')('dev'));
