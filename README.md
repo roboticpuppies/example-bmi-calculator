@@ -1,8 +1,18 @@
-# README
+# A lightweight read-only BMI Calculator API using Node.js
 
-Simple BMI Calculator API using Node.js.
+## Scenario
 
 Body Mass Index is a simple calculation using a person's height and weight. The formula is BMI = kg/m2 where kg is a person's weight in kilograms and m2 is their height in meters squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.
+
+The service is expected to handle a burst of concurrent traffic and should be deployable consistently across isolated environments on a major cloud provider.
+
+## Project goals
+
+- Package a small service as a container and expose a versioned REST route.
+- Provision the network, compute, and supporting resources with reusable Terraform modules.
+- Separate environment-specific configuration from shared infrastructure definitions.
+- Automate infrastructure planning, image build, and deployment through a CI pipeline.
+- Describe how the design can scale and remain observable under load.
 
 ## How to use
 ### Development mode (docker compose)
@@ -41,7 +51,7 @@ The app uses [Sentry](https://sentry.io) for error tracking, performance tracing
 * Tracing and profiling can be tuned or turned off with the `SENTRY_*` variables above.
 * User info is not collected.
 
-## REST API
+## Example API behavior
 
 1. The endpoint is `/bmi/calc`
 2. Pass the `weight` and `height` as query string
