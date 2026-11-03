@@ -1,8 +1,9 @@
 services:
   app:
-    image: node:26-alpine
+    # same Node.js major version as the Lambda runtime (nodejs24.x)
+    image: node:24-alpine
     working_dir: /usr/app
-    command: sh -c "npm ci && node --watch --import ./instrument.js index.js"
+    command: sh -c "npm ci && node --watch index.js"
     env_file:
       - path: .env
         required: false

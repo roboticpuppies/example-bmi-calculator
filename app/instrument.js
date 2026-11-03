@@ -1,4 +1,4 @@
-// load before everything else: node --import ./instrument.js index.js
+// Sentry SDK init. index.js requires this file first, before express is loaded.
 const Sentry = require('@sentry/node');
 const { nodeProfilingIntegration } = require('@sentry/profiling-node');
 
